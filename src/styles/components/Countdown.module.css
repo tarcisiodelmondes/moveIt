@@ -1,0 +1,157 @@
+/* Timer */
+
+.countdownContainer {
+    display: flex;
+    align-items: center;
+
+    font-family: Rajdhani;
+    font-weight: 600;
+
+    color: var(--title);
+}
+
+.countdownContainer > div {
+    flex: 1;
+    font-size: 8.5rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+
+    background: var(--white);
+    box-shadow: 0 0 60px rgba(0, 0, 0, 0.05);
+    border-radius: 5px;
+
+    text-align: center;
+}
+
+.countdownContainer > div span {
+    flex: 1;
+}
+
+.countdownContainer div span:first-child {
+    border-right: 1px solid #f0f1f3;
+}
+
+.countdownContainer div span:last-child {
+    border-left: 1px solid #f0f1f3;
+}
+
+.countdownContainer > span {
+    font-size: 6.25rem;
+    margin: 0 0.5rem;
+}
+
+/* Button */
+
+.countdownButton {
+    width: 100%;
+    height: 5rem;
+
+    margin-top: 2rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 0;
+    border-radius: 5px;
+
+    background: var(--blue);
+    color: var(--white);
+
+    font-size: 1.25rem;
+    font-weight: 600;
+
+    transition: background-color 0.2s;
+}
+
+.countdownButton:not(:disabled) > span {
+    content: "";
+
+    background: var(--white);
+    position: relative;
+    left: 3%;
+    top: -2px;
+
+    width: 1.25rem;
+    height: 1.25rem;
+
+    clip-path: polygon(38% 20%, 37% 100%, 100% 58%);
+}
+
+.countdownButton:not(:disabled):hover {
+    background: var(--blue-dark);
+}
+
+/* Button active */
+.countdownButtonActive {
+    background-color: var(--white);
+    color: var(--title);
+
+    position: relative;
+}
+
+.countdownButtonActive:not(:disabled):hover {
+    background-color: var(--red);
+    color: var(--white);
+}
+
+/* Icon close button active */
+.countdownButtonActive div {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.countdownButtonActive div:hover {
+    filter: invert(100%) brightness(1000%);
+}
+
+.countdownButtonActive img {
+    position: absolute;
+    top: 20px;
+    right: 80px;
+
+    width: 40px;
+    height: 40px;
+}
+
+/* Button disabled */
+.countdownButton:disabled {
+    background: var(--white);
+    border-bottom: 4px solid var(--green);
+
+    color: var(--text);
+
+    cursor: not-allowed;
+}
+
+/* Simbol Checked */
+.countdownButton:disabled span {
+    position: relative;
+    left: 5%;
+
+    width: 1.2rem;
+    height: 1.2rem;
+
+    border-radius: 50%;
+    background: var(--green);
+}
+
+.countdownButton:disabled span::after {
+    content: "";
+
+    border-right: 2px solid var(--white);
+    border-bottom: 2px solid var(--white);
+
+    position: absolute;
+    top: 1px;
+    left: 5px;
+    right: 7px;
+    bottom: 5px;
+
+    z-index: 1;
+
+    transform: rotate(45deg);
+}
