@@ -1,0 +1,54 @@
+.container {
+    background: #5965e0;
+    color: white;
+
+    height: 100vh;
+
+    display: flex;
+}
+
+.container section {
+    flex: 1;
+
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 5rem;
+
+    align-content: center;
+}
+
+.main .login {
+    margin-top: 5rem;
+}
+
+.main .login h1 {
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+.main .login .github {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-top: 1.5rem;
+    font-size: 1.25rem;
+
+    color: #b2b9ff;
+}
+
+.main .login .github i {
+    font-size: 2.2rem;
+    margin-right: 2rem;
+}
+
+.login button {
+    background: #4953b8;
+    color: #f1f2f3;
+    border: 0;
+    border-radius: 5px;
+    margin-top: 2rem;
+    padding: 1rem;
+    text-transform: uppercase;
+    font-weight: 600;
+}

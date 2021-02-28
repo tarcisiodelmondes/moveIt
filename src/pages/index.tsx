@@ -1,61 +1,70 @@
 import Head from "next/head";
-import { GetServerSideProps } from "next";
+import { signIn, signOut, useSession } from "next-auth/client";
 
-import { ExperienceBar } from "../components/ExperienceBar";
-import { Profile } from "../components/profile";
+import styles from "../styles/pages/Login.module.css";
+import { LoadingPage } from "../components/LoadingPage";
 
-import styles from "../styles/pages/Home.module.css";
-import CompletedChallenges from "../components/CompletedChallenges";
-import Countdown from "../components/Countdown";
-import { ChallegenBox } from "../components/ChallengeBox";
-import { CountdownProvider } from "../contexts/CountdownContext";
-import { ChallengesProvider } from "../contexts/ChallengesContext";
+export default function Login() {
+  const [session, loading] = useSession();
 
-interface Homeprops {
-  level: number;
-  currentExperience: number;
-  challengesCompleted: number;
-}
-
-export default function Home(props: Homeprops) {
   return (
-    <ChallengesProvider
-      level={props.level}
-      currentExperience={props.currentExperience}
-      challengesCompleted={props.challengesCompleted}
-    >
-      <div className={styles.container}>
-        <Head>
-          <title>Inicio | move.it</title>
-        </Head>
+    <>
+      {!session && (
+        <div className={styles.container}>
+          <Head>
+            <title>Moveit</title>
+          </Head>
 
-        <ExperienceBar />
-
-        <CountdownProvider>
           <section>
-            <div>
-              <Profile />
-              <CompletedChallenges />
-              <Countdown />
-            </div>
-            <div>
-              <ChallegenBox />
-            </div>
+            <header>
+              <img src="/icons/beans.svg" />
+            </header>
           </section>
-        </CountdownProvider>
-      </div>
-    </ChallengesProvider>
+
+          <section>
+            <main className={styles.main}>
+              <h1>
+                <img src="/logo-page-login.svg" alt="Logo Moveit" />
+              </h1>
+              <div className={styles.login}>
+                <h1>Bem-vindo</h1>
+                <div className={styles.github}>
+                  <i className="fab fa-github icon-github"></i>
+                  <p>Faça login com seu Github para começar</p>
+                </div>
+                <button
+                  onClick={(): Promise<void> =>
+                    signIn("github", {
+                      callbackUrl: "http://localhost:3000/app",
+                    })
+                  }
+                >
+                  Login com Github
+                </button>
+              </div>
+            </main>
+          </section>
+        </div>
+      )}
+
+      {session && <LoadingPage />}
+    </>
   );
 }
 
-export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  const { level, currentExperience, challengesCompleted } = ctx.req.cookies;
-
-  return {
-    props: {
-      level: Number(level) || 1,
-      currentExperience: Number(currentExperience) || 0,
-      challengesCompleted: Number(challengesCompleted) || 0,
-    },
-  };
-};
+/*
+  <>
+        {!session && (
+          <>
+            Not signed in <br />
+            <button onClick={(): Promise<void> => signIn()}>Sign in</button>
+          </>
+        )}
+        {session && (
+          <>
+            Signed in as {session.user.email} <br />
+            <button onClick={(): Promise<void> => signOut()}>Sign out</button>
+          </>
+        )}
+      </>
+*/
