@@ -1,70 +1,68 @@
 import Head from "next/head";
-import { signIn, signOut, useSession } from "next-auth/client";
+import { getSession, signIn, signOut, useSession } from "next-auth/client";
 
 import styles from "../styles/pages/Login.module.css";
 import { LoadingPage } from "../components/LoadingPage";
+import { redirect } from "next/dist/next-server/server/api-utils";
+import Router from "next/dist/next-server/lib/router/router";
+import { GetServerSideProps } from "next";
 
 export default function Login() {
-  const [session, loading] = useSession();
-
   return (
-    <>
-      {!session && (
-        <div className={styles.container}>
-          <Head>
-            <title>Moveit</title>
-          </Head>
+    <div className={styles.container}>
+      <Head>
+        <title>Moveit</title>
+      </Head>
 
-          <section>
-            <header>
-              <img src="/icons/beans.svg" />
-            </header>
-          </section>
+      <section>
+        <header>
+          <img src="/icons/beans.svg" />
+        </header>
+      </section>
 
-          <section>
-            <main className={styles.main}>
-              <h1>
-                <img src="/logo-page-login.svg" alt="Logo Moveit" />
-              </h1>
-              <div className={styles.login}>
-                <h1>Bem-vindo</h1>
-                <div className={styles.github}>
-                  <i className="fab fa-github icon-github"></i>
-                  <p>Faça login com seu Github para começar</p>
-                </div>
-                <button
-                  onClick={(): Promise<void> =>
-                    signIn("github", {
-                      callbackUrl: "http://localhost:3000/app",
-                    })
-                  }
-                >
-                  Login com Github
-                </button>
-              </div>
-            </main>
-          </section>
-        </div>
-      )}
-
-      {session && <LoadingPage />}
-    </>
+      <section>
+        <main className={styles.main}>
+          <h1>
+            <img src="/logo-page-login.svg" alt="Logo Moveit" />
+          </h1>
+          <div className={styles.login}>
+            <h1>Bem-vindo</h1>
+            <div className={styles.github}>
+              <i className="fab fa-github icon-github"></i>
+              <p>Faça login com seu Github para começar</p>
+            </div>
+            <button
+              onClick={(): Promise<void> =>
+                signIn("github", {
+                  callbackUrl: "https://moveit.tarcisiodelmondes.com.br/app",
+                })
+              }
+            >
+              Login com Github
+            </button>
+          </div>
+        </main>
+      </section>
+    </div>
   );
 }
 
-/*
-  <>
-        {!session && (
-          <>
-            Not signed in <br />
-            <button onClick={(): Promise<void> => signIn()}>Sign in</button>
-          </>
-        )}
-        {session && (
-          <>
-            Signed in as {session.user.email} <br />
-            <button onClick={(): Promise<void> => signOut()}>Sign out</button>
-          </>
-        )}
-      </>
-*/
+export const getServerSideProps = async (ctx) => {
+  const { req, res } = ctx;
+  const session = await getSession({ req });
+
+  if (session && req) {
+    res.writeHead(302, {
+      Location: "/app",
+    });
+
+    res.end();
+    return {
+      props: {},
+    };
+  }
+
+  return {
+    props: {},
+  };
+};

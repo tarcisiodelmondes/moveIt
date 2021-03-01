@@ -10,6 +10,7 @@ import Countdown from "../components/Countdown";
 import { ChallegenBox } from "../components/ChallengeBox";
 import { CountdownProvider } from "../contexts/CountdownContext";
 import { ChallengesProvider } from "../contexts/ChallengesContext";
+import { getSession } from "next-auth/client";
 
 interface Homeprops {
   level: number;
@@ -50,6 +51,20 @@ export default function App(props: Homeprops) {
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const { level, currentExperience, challengesCompleted } = ctx.req.cookies;
+
+  const { req, res } = ctx;
+  const session = await getSession({ req });
+
+  if (!session) {
+    res.writeHead(302, {
+      Location: "/",
+    });
+
+    res.end();
+    return {
+      props: {},
+    };
+  }
 
   return {
     props: {

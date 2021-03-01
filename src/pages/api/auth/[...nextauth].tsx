@@ -14,10 +14,6 @@ const options = {
 
   // A database is optional, but required to persist accounts in a database
   database: process.env.DATABASE_URL,
-  async redirect(url, baseUrl) {
-    console.log("Nao Logado");
-    return baseUrl;
-  },
 };
 
 export default (req: NextApiRequest, res: NextApiResponse) =>
