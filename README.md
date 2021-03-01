@@ -39,4 +39,4 @@ $ yarn start
 - Mais funcionalidades em breve
 
 ## Veja a aplicação funcionando
-- Link [https://moveit.tarcisiodelmondes.com.br]
+- Link https://moveit.tarcisiodelmondes.com.br
