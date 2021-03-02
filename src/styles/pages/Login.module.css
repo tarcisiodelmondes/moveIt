@@ -51,4 +51,10 @@
     padding: 1rem;
     text-transform: uppercase;
     font-weight: 600;
+
+    transition: background 0.2s;
+}
+
+.login button:hover {
+    background: #3c4497;
 }

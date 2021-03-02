@@ -11,10 +11,15 @@ export function LevelUpModal() {
         <header>{level}</header>
         <strong>Parabéns</strong>
         <p>Você alcançou um novo level.</p>
-
         <button className={styles.button} onClick={closeLevelUpModal}>
           <img src="/icons/close.svg" alt="Fechar modal" />
         </button>
+        <div className={styles.twitter}>
+          <button>
+            Compartilhar no Twitter
+            <img src="/icons/twitter.svg" alt="Twitter" />
+          </button>
+        </div>
       </div>
     </div>
   );

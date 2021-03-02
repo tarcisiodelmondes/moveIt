@@ -18,8 +18,6 @@
     width: 100%;
     max-width: 400px;
 
-    padding: 2rem 3rem;
-
     border-radius: 5px;
     box-shadow: 0 0 60px rgba(0, 0, 0, 0.5);
 
@@ -29,6 +27,7 @@
 }
 
 .container header {
+    margin: 2rem 3rem;
     font-size: 8.75rem;
     font-weight: 600;
 
@@ -48,10 +47,10 @@
 
     color: var(--text);
 
-    margin-top: 0.25rem;
+    margin: 0.25rem;
 }
 
-.container button {
+.container .button {
     position: absolute;
     top: 0.5rem;
     right: 0.5rem;
@@ -60,4 +59,36 @@
     border: 0;
 
     font-size: 0;
+}
+
+.container .twitter {
+    margin-top: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container .twitter button {
+    width: 100%;
+    height: 5rem;
+    font-size: 1.25rem;
+    font-weight: 600;
+    background: #f5fcff;
+    border: 0;
+    border-top: 1px solid #dcdde0;
+    color: #2aa9e0;
+    transition: all 0.2s;
+}
+
+.twitter button > img {
+    margin-left: 1rem;
+}
+
+.container .twitter button:hover {
+    background: #2aa9e0;
+    color: white;
+}
+
+.container .twitter button:hover > img {
+    filter: brightness(1000);
 }

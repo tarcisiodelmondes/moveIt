@@ -49,11 +49,13 @@ export function ChallegenBox() {
         </div>
       ) : (
         <div className={styles.challengeBoxNotActive}>
-          <strong>Inicie um ciclo para receber desafios</strong>
-          <p>
+          <strong>
+            Inicie um ciclo para receber desafios a serem completados
+          </strong>
+          <div className={styles.challengeBoxMessege}>
             <img src="icons/level-up.svg" alt="Level Up" />
-            Avance de level completando os desafios.
-          </p>
+            <p>Complete-os e ganhe experiência e avance de leve.</p>
+          </div>
         </div>
       )}
     </div>
