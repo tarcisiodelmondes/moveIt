@@ -1,10 +1,8 @@
 import Head from "next/head";
-import { getSession, signIn, signOut, useSession } from "next-auth/client";
+import { getSession, signIn } from "next-auth/client";
 
 import styles from "../styles/pages/Login.module.css";
-import { LoadingPage } from "../components/LoadingPage";
-import { redirect } from "next/dist/next-server/server/api-utils";
-import Router from "next/dist/next-server/lib/router/router";
+
 import { GetServerSideProps } from "next";
 
 export default function Login() {
@@ -47,7 +45,7 @@ export default function Login() {
   );
 }
 
-export const getServerSideProps = async (ctx) => {
+export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const { req, res } = ctx;
   const session = await getSession({ req });
 
