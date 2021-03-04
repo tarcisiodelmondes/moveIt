@@ -1,15 +1,34 @@
 interface GetHtmlProps {
   level: string;
   currentExperience: string;
+  completedChallenges: string;
 }
 
-export function getHtml({ level, currentExperience }: GetHtmlProps) {
+export function getHtml({
+  level,
+  currentExperience,
+  completedChallenges,
+}: GetHtmlProps) {
   return `<!DOCTYPE html>
   <html lang="en">
     <head>
       <meta charset="UTF-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
+
+      <meta property="og:title" content="Move.it" />
+        <meta property="og:description" content="teste" />
+
+        <meta property="og:image" content="https://moveit-next-tarcisiodelmondes.vercel.app/api/thumbnail.png?level=23&currentExperience=200&completedChallenges=17" />
+        <meta property="og:image:type" content="image/png" />
+
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="600" />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Teste move.it" />
+        <meta name="twitter:description" content="Teste thumb" />
+        <meta name="twitter:image" content="https://moveit-next-tarcisiodelmondes.vercel.app/api/thumbnail.png?level=23&currentExperience=200&completedChallenges=17" />
+
       <link rel="preconnect" href="https://fonts.gstatic.com" />
       <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Rajdhani:wght@600&display=swap"
@@ -40,17 +59,17 @@ export function getHtml({ level, currentExperience }: GetHtmlProps) {
   
         .grid {
           display: grid;
-          grid-template-columns: repeat(2, 2fr);
+          grid-template-columns: repeat(2, 1fr);
           flex: 1;
           gap: 5rem;
-          margin-top: 6rem;
+          margin-top: 1rem
         }
   
         header {
           font-size: 20rem;
           font-weight: 600;
           color: #5965e0;
-          background: url(https:moveit.tarcisiodelmondes.com.br/icons/levelup.svg)
+          background: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTU0IiBoZWlnaHQ9Ijk0IiB2aWV3Qm94PSIwIDAgMTU0IDk0IiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8cGF0aCBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGNsaXAtcnVsZT0iZXZlbm9kZCIgZD0iTTEyOS40MzMgMTEuOTUxMkMxMjkuMjY2IDE5LjQxOTIgMTM0LjU2OCAyMi45NDE3IDEzNC41NjggMjIuOTQxN0MxMzQuNTY4IDIyLjk0MTcgMTQwLjExOCAxOC44ODQ1IDE0MC4yNzkgMTEuNjA3N0MxNDAuNDQ0IDQuMzE4MDYgMTM0LjM0NSAwLjA0MDUyNzMgMTM0LjM0NSAwLjA0MDUyNzNDMTM0LjM0NSAwLjA0MDUyNzMgMTI5LjU5NiA0LjQ4MTk3IDEyOS40MzMgMTEuOTUxMlpNMTE5LjQzNSAyOS43MDlDMTIxLjYyNyAzNi42NDgxIDEyOC4wNzggMzguOTQ5OSAxMjguMDc4IDM4Ljk0OTlDMTI4LjA3OCAzOC45NDk5IDEzMi4xOTMgMzQuMDQ5NCAxMjkuOTQ5IDI2LjkyNjlDMTI3LjY5NiAxOS44MDY0IDEyMS45MSAxNi45MTYgMTIxLjkxIDE2LjkxNkMxMjEuOTEgMTYuOTE2IDExNy4yNDcgMjIuNzcxMiAxMTkuNDM1IDI5LjcwOVpNMTQxLjI3NSAyNi4yNDg1QzEzNy4wMTIgMzIuMzgwOCAxMzkuNDc4IDM4LjI4MjQgMTM5LjQ3OCAzOC4yODI0QzEzOS40NzggMzguMjgyNCAxNDYuMzI3IDM3Ljk5MjQgMTUwLjQ3MiAzMi4wMDc3QzE1NC42MyAyNi4wMjY1IDE1MS45MjkgMTkuMDYxNCAxNTEuOTI5IDE5LjA2MTRDMTUxLjkyOSAxOS4wNjE0IDE0NS41MzQgMjAuMTEwOSAxNDEuMjc1IDI2LjI0ODVaTTEyNS4zMTEgNDYuNjAyN0MxMjYuNjExIDUzLjk1OSAxMjEuODk3IDU4LjI4NTkgMTIxLjg5NyA1OC4yODU5QzEyMS44OTcgNTguMjg1OSAxMTUuNzk2IDU1LjE1NTMgMTE0LjUyNiA0Ny45OTA4QzExMy4yNzIgNDAuODIxMiAxMTguNjQ4IDM1LjYyNTEgMTE4LjY0OCAzNS42MjUxQzExOC42NDggMzUuNjI1MSAxMjQuMDA5IDM5LjI1MDcgMTI1LjMxMSA0Ni42MDI3Wk0xMTQuNTk1IDU5LjQ1MDVDMTEzLjk4NyA1MS45OTUyIDEwOC45OTQgNDcuODgwOSAxMDguOTk0IDQ3Ljg4MDlDMTA4Ljk5NCA0Ny44ODA5IDEwMy4xNTMgNTIuNTQ4NCAxMDMuNzQ1IDU5LjgwNjdDMTA0LjMzNyA2Ny4wNjUxIDExMC4xMDQgNzAuNzU4MSAxMTAuMTA0IDcwLjc1ODFDMTEwLjEwNCA3MC43NTgxIDExNS4xOTkgNjYuOTAwMyAxMTQuNTk1IDU5LjQ1MDVaTTk0LjY2MjMgODIuMzY3M0M5NC42NjIzIDgyLjM2NzMgOTAuMTk0OCA3Ny4xNTkzIDkxLjcwODcgNzAuMDI5MUM5My4yMjY4IDYyLjkwMDEgMTAwLjE2IDYwLjExNzUgMTAwLjE2IDYwLjExNzVDMTAwLjE2IDYwLjExNzUgMTAzLjc1MiA2NS41MDg4IDEwMi4yMDIgNzIuODI2NUMxMDAuNjQ3IDgwLjE0MzEgOTQuNjYyMyA4Mi4zNjczIDk0LjY2MjMgODIuMzY3M1pNMTM1LjQ4NSA1My4xODgyQzEzNS40ODUgNTMuMTg4MiAxMzQuODcxIDQ2LjgxNDIgMTQwLjczMSA0Mi4yMTE0QzE0Ni42MDUgMzcuNjA3OCAxNTMuMDE1IDM4LjQ5NDUgMTUzLjAxNSAzOC40OTQ1QzE1My4wMTUgMzguNDk0NSAxNTMuNTU1IDQ1Ljk2MzggMTQ3LjgzMSA1MC40NTE1QzE0Mi4xMDUgNTQuOTQzNCAxMzUuNDg1IDUzLjE4ODIgMTM1LjQ4NSA1My4xODgyWk0xMzQuMDk5IDU3LjYzNTVDMTI3LjM2MyA2MC44MjQyIDEyNi41NTQgNjcuMTc5NSAxMjYuNTU0IDY3LjE3OTVDMTI2LjU1NCA2Ny4xNzk1IDEzMi42MjMgNzAuMzYxMiAxMzkuMTg4IDY3LjI2NDVDMTQ1Ljc1MyA2NC4xNjc4IDE0Ni44ODIgNTYuNzU1NCAxNDYuODgyIDU2Ljc1NTRDMTQ2Ljg4MiA1Ni43NTU0IDE0MC44MzcgNTQuNDU2NiAxMzQuMDk5IDU3LjYzNTVaTTExNS43OTUgNzcuODQ1MkMxMTUuNzk1IDc3Ljg0NTIgMTE4LjQ3NyA3Mi4wMjM5IDEyNS44NSA3MS4wMzlDMTMzLjIzMiA3MC4wNTIgMTM4LjI4OSA3NC4wODI0IDEzOC4yODkgNzQuMDgyNEMxMzguMjg5IDc0LjA4MjQgMTM0Ljk4MiA4MC44MDU1IDEyNy43OTggODEuNzY3NkMxMjAuNjA4IDgyLjczMjggMTE1Ljc5NSA3Ny44NDUyIDExNS43OTUgNzcuODQ1MlpNMTIzLjE1OSA4Ni43NTI2QzEyMy4xNTkgODYuNzUyNiAxMTguNjA0IDgyLjE0NTIgMTExLjE3IDgyLjIzMjhDMTAzLjc0IDgyLjMyNTcgMTAwLjM5OCA4Ny43ODIxIDEwMC4zOTggODcuNzgyMUMxMDAuMzk4IDg3Ljc4MjEgMTA0LjU5MSA5My4yMTQ4IDExMS44MzYgOTMuMTMxOUMxMTkuMDg3IDkzLjAyNzUgMTIzLjE1OSA4Ni43NTI2IDEyMy4xNTkgODYuNzUyNlpNMTMyLjczMSAyNi45MjgzTDEzNi4yMjEgMjYuMjMzOUMxMzYuMjkyIDI2LjYxNTUgMTQzLjA1IDY0LjYzMTggODguMzgyNiA5MC45MjM0TDg2Ljg2NTggODcuNzEyOUMxMzguOTAyIDYyLjY3NiAxMzMuMDExIDI4LjM3MDggMTMyLjczMSAyNi45MjgzWk0xMS43NTQyIDI2LjU0ODhDMTYuMDE2NiAzMi42ODExIDEzLjU1MTEgMzguNTgyNyAxMy41NTExIDM4LjU4MjdDMTMuNTUxMSAzOC41ODI3IDYuNzAyMjEgMzguMjkyNyAyLjU1NjkxIDMyLjMwOEMtMS42MDExNSAyNi4zMjY4IDEuMDk5NTcgMTkuMzYxNyAxLjA5OTU3IDE5LjM2MTdDMS4wOTk1NyAxOS4zNjE3IDcuNDk0OTIgMjAuNDExMiAxMS43NTQyIDI2LjU0ODhaTTI0Ljk1MTcgMzkuMjUwMkMyNC45NTE3IDM5LjI1MDIgMzEuNDAyNiAzNi45NDgzIDMzLjU5NDcgMzAuMDA5M0MzNS43ODI2IDIzLjA3MTUgMzEuMTE5OSAxNy4yMTYzIDMxLjExOTkgMTcuMjE2M0MzMS4xMTk5IDE3LjIxNjMgMjUuMzMzMiAyMC4xMDY3IDIzLjA4MDIgMjcuMjI3MkMyMC44MzY5IDM0LjM0OTcgMjQuOTUxNyAzOS4yNTAyIDI0Ljk1MTcgMzkuMjUwMlpNMzEuMTMyNCA1OC41ODYyQzMxLjEzMjQgNTguNTg2MiAyNi40MTg0IDU0LjI1OTMgMjcuNzE4NSA0Ni45MDNDMjkuMDE5NyAzOS41NTEgMzQuMzgxMiAzNS45MjU0IDM0LjM4MTIgMzUuOTI1NEMzNC4zODEyIDM1LjkyNTQgMzkuNzU3IDQxLjEyMTUgMzguNTAyNyA0OC4yOTExQzM3LjIzMzQgNTUuNDU1NiAzMS4xMzI0IDU4LjU4NjIgMzEuMTMyNCA1OC41ODYyWk00NC4wMzU0IDQ4LjE4MTJDNDQuMDM1NCA0OC4xODEyIDM5LjA0MjIgNTIuMjk1NSAzOC40MzQ4IDU5Ljc1MDdDMzcuODMwNSA2Ny4yMDA2IDQyLjkyNTIgNzEuMDU4NCA0Mi45MjUyIDcxLjA1ODRDNDIuOTI1MiA3MS4wNTg0IDQ4LjY5MyA2Ny4zNjUzIDQ5LjI4NDcgNjAuMTA3QzQ5Ljg3NjQgNTIuODQ4NyA0NC4wMzU0IDQ4LjE4MTIgNDQuMDM1NCA0OC4xODEyWk02MS4zMjA0IDcwLjMyOTRDNjIuODM0MiA3Ny40NTk2IDU4LjM2NjggODIuNjY3NiA1OC4zNjY4IDgyLjY2NzZDNTguMzY2OCA4Mi42Njc2IDUyLjM4MjEgODAuNDQzNCA1MC44Mjc0IDczLjEyNjhDNDkuMjc2OSA2NS44MDkgNTIuODY5NCA2MC40MTc4IDUyLjg2OTQgNjAuNDE3OEM1Mi44Njk0IDYwLjQxNzggNTkuODAyMiA2My4yMDA0IDYxLjMyMDQgNzAuMzI5NFpNMTguNDYxMSAyMy4yNDJDMTguNDYxMSAyMy4yNDIgMjMuNzYzNiAxOS43MTk1IDIzLjU5NjQgMTIuMjUxNUMyMy40MzM1IDQuNzgyMjYgMTguNjg0MyAwLjM0MDgyMSAxOC42ODQzIDAuMzQwODIxQzE4LjY4NDMgMC4zNDA4MjEgMTIuNTg1IDQuNjE4MzYgMTIuNzQ5OSAxMS45MDhDMTIuOTExNSAxOS4xODQ4IDE4LjQ2MTEgMjMuMjQyIDE4LjQ2MTEgMjMuMjQyWk0xMi4yOTggNDIuNTExN0MxOC4xNTgxIDQ3LjExNDUgMTcuNTQzOCA1My40ODg1IDE3LjU0MzggNTMuNDg4NUMxNy41NDM4IDUzLjQ4ODUgMTAuOTIzNyA1NS4yNDM3IDUuMTk4MTkgNTAuNzUxOEMtMC41MjYxNjYgNDYuMjY0MSAwLjAxMzU4NzMgMzguNzk0OCAwLjAxMzU4NzMgMzguNzk0OEMwLjAxMzU4NzMgMzguNzk0OCA2LjQyMzkgMzcuOTA4MSAxMi4yOTggNDIuNTExN1pNMjYuNDc1MiA2Ny40Nzk4QzI2LjQ3NTIgNjcuNDc5OCAyNS42NjY0IDYxLjEyNDUgMTguOTMwNCA1Ny45MzU4QzEyLjE5MjUgNTQuNzU2OSA2LjE0NyA1Ny4wNTU3IDYuMTQ3IDU3LjA1NTdDNi4xNDcgNTcuMDU1NyA3LjI3NTY2IDY0LjQ2ODEgMTMuODQwOSA2Ny41NjQ4QzIwLjQwNjIgNzAuNjYxNSAyNi40NzUyIDY3LjQ3OTggMjYuNDc1MiA2Ny40Nzk4Wk0yNy4xNzk1IDcxLjMzOTNDMzQuNTUyMiA3Mi4zMjQyIDM3LjIzNDcgNzguMTQ1NCAzNy4yMzQ3IDc4LjE0NTRDMzcuMjM0NyA3OC4xNDU0IDMyLjQyMTMgODMuMDMzMSAyNS4yMzE4IDgyLjA2NzlDMTguMDQ3NyA4MS4xMDU4IDE0Ljc0MDMgNzQuMzgyNyAxNC43NDAzIDc0LjM4MjdDMTQuNzQwMyA3NC4zODI3IDE5Ljc5NzEgNzAuMzUyMyAyNy4xNzk1IDcxLjMzOTNaTTQxLjg1ODYgODIuNTMzMUMzNC40MjUyIDgyLjQ0NTUgMjkuODY5OCA4Ny4wNTI5IDI5Ljg2OTggODcuMDUyOUMyOS44Njk4IDg3LjA1MjkgMzMuOTQyNCA5My4zMjc4IDQxLjE5MzIgOTMuNDMyMkM0OC40MzgyIDkzLjUxNTEgNTIuNjMxIDg4LjA4MjQgNTIuNjMxIDg4LjA4MjRDNTIuNjMxIDg4LjA4MjQgNDkuMjg4OSA4Mi42MjYgNDEuODU4NiA4Mi41MzMxWk0xNi44MDgzIDI2LjUzNDJMMjAuMjk3OCAyNy4yMjg2QzIwLjAxODMgMjguNjcxMSAxNC4xMjczIDYyLjk3NjMgNjYuMTYzNCA4OC4wMTMyTDY0LjY0NjYgOTEuMjIzN0M5Ljk3OTEzIDY0LjkzMjEgMTYuNzM3MiAyNi45MTU4IDE2LjgwODMgMjYuNTM0MloiIGZpbGw9InVybCgjcGFpbnQwX2xpbmVhcikiLz4KPGRlZnM+CjxsaW5lYXJHcmFkaWVudCBpZD0icGFpbnQwX2xpbmVhciIgeDE9Ijc2LjUxNDUiIHkxPSIwLjA0MDUyNzMiIHgyPSI3Ni41MTQ1IiB5Mj0iOTMuNDMzMSIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiPgo8c3RvcCBzdG9wLWNvbG9yPSIjRENEREUwIi8+CjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iI0RDRERFMCIgc3RvcC1vcGFjaXR5PSIwIi8+CjwvbGluZWFyR3JhZGllbnQ+CjwvZGVmcz4KPC9zdmc+Cg==")
             no-repeat center;
           background-size: contain;
         }
@@ -107,16 +126,16 @@ export function getHtml({ level, currentExperience }: GetHtmlProps) {
       <div class="container">
         <div class="grid">
           <div class="div-1">
-            <header>23</header>
+            <header>${level}</header>
   
             <strong>Avancei para o próximo level</strong>
           </div>
           <div class="div-2">
             <h2 class="h2-style">Desafios</h2>
-            <p><span>3</span> <span>completados</span></p>
+            <p><span>${completedChallenges}</span> <span>completados</span></p>
   
             <h2 class="h2-style">Experiência</h2>
-            <p><span>154000</span> <span>xp</span></p>
+            <p><span>${currentExperience}</span> <span>xp</span></p>
   
             <div class="svg">
               <svg
