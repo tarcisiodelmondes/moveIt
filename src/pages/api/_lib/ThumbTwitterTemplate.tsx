@@ -15,20 +15,6 @@ export function getHtml({
       <meta charset="UTF-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-      <meta property="og:title" content="Move.it" />
-        <meta property="og:description" content="teste" />
-
-        <meta property="og:image" content="https://moveit-next-tarcisiodelmondes.vercel.app/api/thumbnail.png?level=23&currentExperience=200&completedChallenges=17" />
-        <meta property="og:image:type" content="image/png" />
-
-        <meta property="og:image:width" content="1200" />
-        <meta property="og:image:height" content="600" />
-
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Teste move.it" />
-        <meta name="twitter:description" content="Teste thumb" />
-        <meta name="twitter:image" content="https://moveit-next-tarcisiodelmondes.vercel.app/api/thumbnail.png?level=23&currentExperience=200&completedChallenges=17" />
-
       <link rel="preconnect" href="https://fonts.gstatic.com" />
       <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Rajdhani:wght@600&display=swap"
