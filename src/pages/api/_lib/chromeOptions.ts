@@ -1,5 +1,4 @@
-import { exec } from "child_process";
-import chrome, { args, headless } from "chrome-aws-lambda";
+import chrome from "chrome-aws-lambda";
 
 // Eu estou utilizando o Chromium, caso você esteja utilizando o chrome
 // no linux, o caminho do executavel vai estar diferente.

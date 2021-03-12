@@ -1,13 +1,13 @@
 interface GetHtmlProps {
   level: string;
   currentExperience: string;
-  completedChallenges: string;
+  challengesCompleted: string;
 }
 
 export function getHtml({
   level,
   currentExperience,
-  completedChallenges,
+  challengesCompleted,
 }: GetHtmlProps) {
   return `<!DOCTYPE html>
   <html lang="en">
@@ -118,7 +118,7 @@ export function getHtml({
           </div>
           <div class="div-2">
             <h2 class="h2-style">Desafios</h2>
-            <p><span>${completedChallenges}</span> <span>completados</span></p>
+            <p><span>${challengesCompleted}</span> <span>completados</span></p>
   
             <h2 class="h2-style">Experiência</h2>
             <p><span>${currentExperience}</span> <span>xp</span></p>

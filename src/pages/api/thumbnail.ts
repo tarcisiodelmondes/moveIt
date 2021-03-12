@@ -4,18 +4,18 @@ import { getHtml } from "./_lib/ThumbTwitterTemplate";
 
 const isDev = !process.env.AWS_REGION;
 
-export default async function Thumbnail(
+export default async (
   req: NextApiRequest,
   res: NextApiResponse
-) {
+): Promise<any> => {
   try {
     const query = req.query;
 
     const level = String(query.level);
     const currentExperience = String(query.currentExperience);
-    const completedChallenges = String(query.completedChallenges);
+    const challengesCompleted = String(query.challengesCompleted);
 
-    const html = getHtml({ level, currentExperience, completedChallenges });
+    const html = getHtml({ level, currentExperience, challengesCompleted });
 
     const file = await getScreenshot(html, isDev);
 
@@ -24,10 +24,12 @@ export default async function Thumbnail(
       "Cache-Control",
       "public, immutable, no-transform, s-maxage=31536000, max-age=31536000"
     );
+
     return res.end(file);
   } catch (error) {
+    res.statusCode = 500;
+    res.setHeader("Content-Type", "text/html");
+    res.end("<h1>Internal Error</h1><p>Sorry, there was a problem</p>");
     console.error(error);
-
-    return res.status(500).send("Internal server error");
   }
-}
+};

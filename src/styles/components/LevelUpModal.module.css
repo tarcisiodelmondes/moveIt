@@ -68,7 +68,7 @@
     justify-content: center;
 }
 
-.container .twitter button {
+.container .twitter a {
     width: 100%;
     height: 5rem;
     font-size: 1.25rem;
@@ -78,17 +78,20 @@
     border-top: 1px solid #dcdde0;
     color: #2aa9e0;
     transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.twitter button > img {
+.twitter a > img {
     margin-left: 1rem;
 }
 
-.container .twitter button:hover {
+.container .twitter a:hover {
     background: #2aa9e0;
     color: white;
 }
 
-.container .twitter button:hover > img {
+.container .twitter a:hover > img {
     filter: brightness(1000);
 }
