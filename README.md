@@ -41,11 +41,6 @@ $ yarn start
 - [x] Pagina de Login
 - [x] Login com Github
 - [x] Compartilhar no Twitter
-- [ ] Ranking
-- [ ] Versão mobile
-- [ ] Correção de bug na notificação do Mobile
-- [ ] PWA
-- [ ] Dark mode
 
 ## Veja a aplicação funcionando
 
